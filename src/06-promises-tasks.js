@@ -18,18 +18,26 @@
  *
  * @example
  *    const p1 = willYouMarryMe(true);
- *    p1.then(answer => console.log(answer)) // 'Hooray!!! She said "Yes"!'
- *
+ *    p1.then(answer => console.log(answer)) // 'Hooray!!! She said "Yes"!' *
  *    const p2 = willYouMarryMe(false);
- *    p2.then(answer => console.log(answer)) // 'Oh no, she said "No".';
- *
+ *    p2.then(answer => console.log(answer)) // 'Oh no, she said "No".'; *
  *    const p3 = willYouMarryMe();
  *    p3.then(answer => console.log(answer))
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
+function willYouMarryMe(isPositiveAnswer) {
+  return new Promise((resolve, reject) => {
+    if (typeof isPositiveAnswer !== 'boolean') {
+      reject(new Error('Wrong parameter is passed! Ask her again.'));
+    }
+    if (isPositiveAnswer) {
+      resolve('Hooray!!! She said "Yes"!');
+    }
+    if (isPositiveAnswer === false) {
+      resolve('Oh no, she said "No".');
+    }
+  });
 }
 
 
